@@ -1,0 +1,47 @@
+<html>
+<head>
+
+    <title>Day 23 - Christmas Baking</title>
+        <link rel="stylesheet" href="directory/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Day 23</h1>
+        <img src="https://www.nestle-confectionery.co.uk/sites/default/files/2025-10/11_4_Christmas_Baking_for_Kids_listicle_M%20Header.jpg">
+    </div>
+
+    <audio id="backgroundMusic" autoplay loop controls>
+        <source src="directory/christmas-443109.mp3" type="audio/mpeg">
+    </audio>
+
+<!--from here i dont know whats happening-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click to Reveal Text</title>
+
+</head>
+<body>
+<!--exept here-->
+    <div class="joke-container" onclick="toggleAnswer()">
+        <p>j: what do you call a very old snowman</p>
+        <p class="answer" id="joke-answer">
+            a puddle!
+        </p>
+    </div>
+
+    <script>
+        function toggleAnswer() {
+            var answer = document.getElementById('joke-answer');
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+    </script>
+    <a href="index.html">Return to calender</a>
+
+</html>

@@ -1,0 +1,43 @@
+        body {
+            background-color: #d9534f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #00873E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: goldenrod;
+            margin-bottom: 15px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .joke-container {
+            cursor: pointer;
+            border: 5px solid #00873E;
+            padding: 10px;
+            width: fit-content;
+            background-color:#d35a5a;
+        }
+        .answer {
+            display: none;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .joke-container:hover {
+            background-color: #e9e9e9;
+        }
