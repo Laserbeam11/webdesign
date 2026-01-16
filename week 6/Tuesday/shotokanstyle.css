@@ -1,0 +1,18 @@
+body {
+    background-color: lightblue;
+}
+
+h2 {
+    font-family: Arial;
+    font-size: 24px;
+    text-align: center;
+}
+
+h3 {
+    font-family: arial;
+    color: yellow
+}
+
+.blood {
+    color: red;
+}
