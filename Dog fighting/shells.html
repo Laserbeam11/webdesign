@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2D Ballistics Simulator</title>
+    <style>
+        body { margin: 0; background: #0a0a0a; color: #fff; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        #ui { position: absolute; top: 20px; left: 20px; background: rgba(20, 20, 20, 0.9); padding: 20px; border-radius: 8px; width: 250px; border: 1px solid #444; z-index: 10; }
+        .row { margin-bottom: 15px; }
+        label { display: block; font-size: 11px; text-transform: uppercase; color: #888; margin-bottom: 5px; }
+        input, select, button { width: 100%; box-sizing: border-box; }
+        button { padding: 12px; background: #c62828; border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        #output { margin-top: 15px; font-family: monospace; font-size: 13px; color: #00e676; border-top: 1px solid #333; padding-top: 10px; min-height: 40px;}
+        canvas { display: block; position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <h3 style="margin-top:0">Ballistics Lab (2D)</h3>
+        <div class="row">
+            <label>Round Type</label>
+            <select id="shellType">
+                <option value="550">APFSDS (550mm Pen)</option>
+                <option value="400">HEAT (400mm Pen)</option>
+                <option value="220">AP (220mm Pen)</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>Thickness: <span id="tDisplay">100</span>mm</label>
+            <input type="range" id="thickRange" min="20" max="600" value="100">
+        </div>
+        <div class="row">
+            <label>Slope: <span id="aDisplay">45</span>°</label>
+            <input type="range" id="angleRange" min="0" max="85" value="45">
+        </div>
+        <button id="fireBtn">FIRE ROUND</button>
+        <div id="output">Ready to fire...</div>
+    </div>
+
+    <canvas id="labCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('labCanvas');
+        const ctx = canvas.getContext('2d');
+        const fireBtn = document.getElementById('fireBtn');
+        const outputEl = document.getElementById('output');
+        const thickRange = document.getElementById('thickRange');
+        const angleRange = document.getElementById('angleRange');
+        const shellTypeEl = document.getElementById('shellType');
+
+        let shellX, shellY;
+        let firing = false;
+        const targetX = 500;
+        const targetY = 300;
+        const shellRadius = 10;
+        const plateWidth = 20;
+        const plateHeight = 200;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = resizeCanvas;
+        resizeCanvas();
+
+        fireBtn.addEventListener('click', () => {
+            if (firing) return;
+            firing = true;
+            shellX = 50;
+            shellY = targetY;
+            outputEl.innerText = "Shell flying...";
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Clear canvas
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Update UI displays
+            document.getElementById('tDisplay').innerText = thickRange.value;
+            document.getElementById('aDisplay').innerText = angleRange.value;
+
+            // Draw the plate (Armour)
+            ctx.save();
+            ctx.translate(targetX, targetY);
+            const angleDeg = parseInt(angleRange.value);
+            const angleRad = angleDeg * (Math.PI / 180);
+            ctx.rotate(angleRad);
+            
+            ctx.fillStyle = '#555555';
+            ctx.fillRect(-plateWidth / 2, -plateHeight / 2, plateWidth, plateHeight);
+            ctx.restore();
+
+            // Shell Logic
+            if (firing) {
+                shellX += 8; // Move shell forward
+
+                // Draw the shell
+                ctx.fillStyle = '#ffff00';
+                ctx.beginPath();
+                ctx.arc(shellX, shellY, shellRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Check for collision (simple X distance check)
+                if (shellX >= targetX - plateWidth / 2 - shellRadius) {
+                    firing = false;
+                    
+                    // --- Your Original Calculation Logic ---
+                    const nominalThickness = parseInt(thickRange.value);
+                    const effectiveThickness = nominalThickness / Math.cos(angleRad);
+                    const penetrationPower = parseInt(shellTypeEl.value);
+
+                    if (angleDeg > 75) {
+                        outputEl.innerHTML = "<b style='color:orange'>RICOCHET!</b>";
+                    } else if (penetrationPower >= effectiveThickness) {
+                        outputEl.innerHTML = `<b style='color:lime'>PENETRATION!</b><br>Eff. Thick: ${Math.round(effectiveThickness)}mm`;
+                    } else {
+                        outputEl.innerHTML = `<b style='color:red'>FAILED</b><br>Eff. Thick: ${Math.round(effectiveThickness)}mm`;
+                    }
+                }
+            } else {
+                 // Draw the shell at start position when not firing
+                ctx.fillStyle = '#444';
+                ctx.beginPath();
+                ctx.arc(50, targetY, shellRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        animate();
+    </script>
+</body>
+</html>

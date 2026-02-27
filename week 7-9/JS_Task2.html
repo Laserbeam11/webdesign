@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Interactive Navigation Menu</title>
+    <script>
+        function menuHover(item) {
+            item.style.color = "blue";
+            item.style.fontWeight = "bold";
+        }
+        function menuNormal(item) {
+            item.style.color = "black";
+            item.style.fontWeight = "normal";
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li onmouseover="menuHover(this)" onmouseout="menuNormal(this)">Home</li>
+        <li onmouseover="menuHover(this)" onmouseout="menuNormal(this)">About</li>
+        <li onmouseover="menuHover(this)" onmouseout="menuNormal(this)">Contact</li>
+    </ul>
+</body>
+</html>

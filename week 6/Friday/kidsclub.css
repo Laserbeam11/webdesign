@@ -1,0 +1,23 @@
+body {
+    background-color: red;
+    color:white;
+    font-size: 14px;
+}
+
+p {
+    color: green;
+    font-family: verdana;
+}
+
+h1 {
+    font-size:28px;
+}
+
+#instructor {
+    color: blue;
+    font-family: calibri;
+}
+
+.Kids {
+    text-align:center;
+}

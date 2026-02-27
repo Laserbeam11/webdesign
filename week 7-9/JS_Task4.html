@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>N5 - Interactive Card</title>
+    <style>
+      div {
+        border: 1px solid black;
+        padding: 20px;
+        width: 400px;
+        height: 300px;
+      }
+      
+      p {
+        display: none;
+      }
+    </style>
+    <script>
+        function showInfo(card) {
+            card.style.backgroundColor = "yellow";
+            card.style.color = "blue";
+            card.style.fontWeight = "bold";
+            document.getElementById("hiddenText").style.display = "block";
+        }
+        function hideInfo(card) {
+            card.style.backgroundColor = "white";
+            card.style.color = "black";
+            document.getElementById("hiddenText").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div id="1" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+        <h3>What is a mantissa</h3>
+        <p id="hiddenText">A mantissa is the significant digits part of a number in scientific notation or floating-point representation, determining its precision</p>
+    </div>
+</body>
+</html>

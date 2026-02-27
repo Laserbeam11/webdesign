@@ -1,0 +1,79 @@
+/* Background Colours */
+body { 
+	font-family: Comic Sans Ms;	
+	background-color: #fe83cc 
+}
+
+/* Text Properties */
+h1 { 
+	text-align:center;
+	color: lemonchiffon;
+	font-size:30pt
+}
+
+h2 {
+	text-align:left;
+	color:Black;
+	font-size:16pt
+}
+
+p {
+	text-align:left;
+	color:Black;
+	font-size:14pt
+}
+
+a {
+	text-align:left;
+	color: black;
+	font-size:14pt
+}
+
+/* IDs */
+#headingParagraph {
+	text-align: center;
+	color: #fffacd;
+	font-size: 22pt;
+	font-family: arial;
+}  
+
+#bannerImage {
+	height: 250px;
+	width: 100%
+} 
+
+#freeSlice {
+	font-weight: bold;
+}
+
+#cakeImage {
+	height: 240px;
+	width: 300px
+}
+
+#bannerVideo {
+	height: 240px;
+	width: 320px
+}
+
+#bakeOffLink {
+	color: OrangeRed;
+	font-size: 16pt;
+}
+
+/* Classes */
+.headingSection { 
+	background-color: #00bfff
+}
+
+.contentSection {
+	background-color: #00bfff 
+}
+
+.linksSection {
+	background-color: #00bfff
+}
+
+.customCakeSection {
+	background-color: lemonchiffon
+}
